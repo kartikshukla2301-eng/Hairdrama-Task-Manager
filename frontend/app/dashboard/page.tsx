@@ -89,16 +89,19 @@ console.log("CURRENT USER ID:", user?.id);
   (u) => u.id === assignedTo
 );
 
-await fetch("http://127.0.0.1:5000/send-task-email", {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json",
-  },
-  body: JSON.stringify({
-    email: assignedUser?.email,
-    title,
-  }),
-});
+await fetch(
+  "https://hairdrama-task-manager-vkcs.onrender.com/send-task-email",
+  {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      email: assignedUser?.email,
+      title,
+    }),
+  }
+);
     if (!error) {
       alert("Task Created");
       setTitle("");
@@ -309,18 +312,19 @@ Create a task to get started</p>
                 const assignedUser = users.find(
                 (u) => u.id === task.assigned_to
                 );  
-                await fetch("http://127.0.0.1:5000/task-completed-email, https://hairdrama-task-manager-vkcs.onrender.com/send-task-email", {
-
-                method: "POST",
-                headers: {
-               "Content-Type": "application/json",
+                await fetch(
+                "https://hairdrama-task-manager-vkcs.onrender.com/task-completed-email",
+                {
+                  method: "POST",
+                  headers: {
+                    "Content-Type": "application/json",
                   },
                   body: JSON.stringify({
                     email: assignedUser?.email,
                     title: task.title,
                   }),
-                });
-
+                }
+              );
                 fetchTasks();
               }}
               
