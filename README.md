@@ -1,474 +1,697 @@
-# 🌟 HairDrama Task Manager
-[![Next.js 15](https://img.shields.io/badge/Next.js-15-black?style=for-the-badge&logo=next.js&logoColor=white)](https://nextjs.org/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5-blue?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
-[![Tailwind CSS](https://img.shields.io/badge/Tailwind-CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
-[![Supabase](https://img.shields.io/badge/Supabase-Database%20%26%20Auth-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white)](https://supabase.com/)
-[![Flask](https://img.shields.io/badge/Flask-Backend-000000?style=for-the-badge&logo=flask&logoColor=white)](https://flask.palletsprojects.com/)
-[![Resend](https://img.shields.io/badge/Resend-Email%20API-FF69B4?style=for-the-badge)](https://resend.com/)
-[![Vercel](https://img.shields.io/badge/Vercel-Frontend%20Host-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://vercel.com/)
-[![Render](https://img.shields.io/badge/Render-Backend%20Host-46E3B7?style=for-the-badge&logo=render&logoColor=white)](https://render.com/)
+<div align="center">
+
+<!-- Banner -->
+<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=200&section=header&text=HairDrama%20Task%20Manager&fontSize=48&fontColor=fff&animation=fadeIn&fontAlignY=38&desc=Modern%20Team%20Task%20Management%20Platform&descAlignY=60&descSize=18" width="100%"/>
+
+<!-- Badges -->
+<p align="center">
+  <img src="https://img.shields.io/badge/Next.js-15-black?style=for-the-badge&logo=next.js&logoColor=white" />
+  <img src="https://img.shields.io/badge/TypeScript-5-3178C6?style=for-the-badge&logo=typescript&logoColor=white" />
+  <img src="https://img.shields.io/badge/Tailwind_CSS-3-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" />
+  <img src="https://img.shields.io/badge/Flask-Python-000000?style=for-the-badge&logo=flask&logoColor=white" />
+  <img src="https://img.shields.io/badge/Supabase-PostgreSQL-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white" />
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Deployed%20on-Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white" />
+  <img src="https://img.shields.io/badge/Backend%20on-Render-46E3B7?style=for-the-badge&logo=render&logoColor=white" />
+  <img src="https://img.shields.io/badge/Email-Resend_API-FF6B6B?style=for-the-badge&logo=mail.ru&logoColor=white" />
+  <img src="https://img.shields.io/badge/Auth-Google_OAuth-4285F4?style=for-the-badge&logo=google&logoColor=white" />
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Status-Live-brightgreen?style=flat-square" />
+  <img src="https://img.shields.io/badge/License-MIT-blue?style=flat-square" />
+  <img src="https://img.shields.io/badge/PRs-Welcome-orange?style=flat-square" />
+  <img src="https://img.shields.io/badge/Made%20with-%E2%9D%A4%EF%B8%8F-red?style=flat-square" />
+</p>
+
+<br/>
+
+**HairDrama Task Manager** is a full-stack, production-ready team task management platform where teams can create, assign, track, and complete tasks — with automated email notifications powered by Resend API. Built with a modern Next.js 15 frontend and a decoupled Flask Python backend.
+
+<br/>
+
+[🚀 Live Demo](https://hairdrama-task-manager-coral.vercel.app) · [📖 Documentation](#) · [🐛 Report Bug](../../issues) · [✨ Request Feature](../../issues)
+
+</div>
+
 ---
-## 📖 Table of Contents
-* [🚀 Project Overview](#-project-overview)
-* [✨ Core Features](#-core-features)
-* [🏗️ Architecture](#️-architecture)
-* [💻 Tech Stack](#-tech-stack)
-* [🗄️ Database Schema](#️-database-schema)
-* [📁 Folder Structure](#-folder-structure)
-* [🛠️ Installation & Local Setup](#️-installation--local-setup)
-  * [Backend (Flask) Setup](#backend-flask-setup)
-  * [Frontend (Next.js) Setup](#frontend-nextjs-setup)
-* [🔑 Environment Variables](#-environment-variables)
-* [🔌 API Endpoints](#-api-endpoints)
-* [🚀 Deployment Guide](#-deployment-guide)
-* [📸 Screenshots](#-screenshots)
-* [🔮 Future Enhancements](#-future-enhancements)
-* [🎓 Learning Outcomes](#-learning-outcomes)
-* [🤝 Contributing](#-contributing)
-* [📄 License](#-license)
-* [✍️ Author](#️-author)
+
+## 📌 Table of Contents
+
+- [Overview](#-overview)
+- [Key Features](#-key-features)
+- [Architecture](#-architecture)
+- [Tech Stack](#-tech-stack)
+- [Database Schema](#-database-schema)
+- [Folder Structure](#-folder-structure)
+- [Getting Started](#-getting-started)
+- [Environment Variables](#-environment-variables)
+- [Backend Setup](#-backend-setup-flask)
+- [Frontend Setup](#-frontend-setup-nextjs)
+- [Deployment](#-deployment)
+- [Screenshots](#-screenshots)
+- [API Endpoints](#-api-endpoints)
+- [Future Enhancements](#-future-enhancements)
+- [Learning Outcomes](#-learning-outcomes)
+- [Contributing](#-contributing)
+- [License](#-license)
+- [Author](#-author)
+
 ---
-## 🚀 Project Overview
-**HairDrama Task Manager** is a premium, production-grade full-stack task management platform built for modern, high-velocity teams. In collaborative work environments, tracking responsibilities can become chaotic—or, as we call it, a "drama." This application eliminates the friction by providing teams with a streamlined, central workspace to create, assign, track, and complete tasks with automated notifications.
-Leveraging **Next.js 15** with React Server Components, a secure **Supabase** backend for authentication and database management, a lightweight **Flask** API microservice for notifications, and **Resend** for transaction email alerts, HairDrama ensures that no task falls through the cracks.
+
+## 🌟 Overview
+
+HairDrama Task Manager is a **modern, full-stack SaaS-grade team productivity platform** that streamlines task assignment and tracking for collaborative teams. The platform features Google OAuth for frictionless authentication, a real-time dashboard to monitor task progress, and an automated email notification system that keeps every team member in the loop.
+
+The project follows a **decoupled architecture** — a Next.js 15 frontend communicates with a Flask REST API backend, with Supabase serving as both the authentication provider and the PostgreSQL database layer.
+
+> 🎯 Built as a complete internship evaluation project to demonstrate full-stack proficiency across frontend, backend, database design, third-party integrations, and deployment.
+
 ---
-## ✨ Core Features
-*   **🔒 Google OAuth Authentication:** Passwordless, secure login facilitated through Supabase Auth.
-*   **👥 User & Team Directory:** Automatic sync of authenticated users into a central directory for quick task assignment.
-*   **➕ Task Creation & Editing:** Intuitive, modal-driven task creation with markdown description support.
-*   **🎯 Intelligent Assignment:** Assign tasks to any team member with automatically tracked "Assigned By" and "Assigned To" metadata.
-*   **📊 Task Status Tracking:** Real-time state management representing three core lifecycle stages: `Pending`, `In Progress`, and `Completed`.
-*   **📧 Automated Email Notifications:** 
-    *   **On Assignment:** The assignee receives an immediate email with task details, description, and a link to their dashboard.
-    *   **On Completion:** The assigner receives a confirmation email once the task is marked completed.
-*   **📱 Responsive SaaS Dashboard:** Premium, glassmorphic dark-themed layout optimized for desktop, tablet, and mobile screens.
+
+## ✨ Key Features
+
+| Feature | Description |
+|---|---|
+| 🔐 **Google OAuth** | One-click sign-in using Google accounts via Supabase Auth |
+| 👥 **Team Collaboration** | Assign tasks to any registered team member |
+| 📝 **Task Management** | Create, update, and delete tasks with full CRUD support |
+| 📊 **Status Tracking** | Track tasks across `pending → in_progress → completed` lifecycle |
+| 📧 **Email on Assignment** | Automated email sent to assignee when a task is assigned |
+| ✅ **Email on Completion** | Automated email sent to assignor when a task is marked complete |
+| 📱 **Responsive Dashboard** | Mobile-first, fully responsive UI with Tailwind CSS |
+| 🔒 **Secure by Default** | Supabase Row Level Security (RLS) for data isolation |
+| ⚡ **Fast & Modern** | Next.js 15 App Router with Server Components for performance |
+
 ---
+
 ## 🏗️ Architecture
-The application relies on a decoupled, microservices-oriented architecture:
+
+### System Architecture Diagram
+
 ```mermaid
-graph TD
-    A[Next.js Frontend] -->|1. Google Sign-In| B(Supabase Auth)
-    A -->|2. Direct Reads/Writes| C[(Supabase Postgres)]
-    A -->|3. Trigger Action APIs| D[Flask Backend API]
-    D -->|4. Sync / Verify Users| C
-    D -->|5. Send Transaction Emails| E[Resend Email Service]
-    E -->|6. Deliver Notification| F[Team Member Inbox]
-    
-    style A fill:#121214,stroke:#3f3f46,stroke-width:2px,color:#fff
-    style B fill:#3ECF8E,stroke:#2fb379,stroke-width:2px,color:#fff
-    style C fill:#34495e,stroke:#2c3e50,stroke-width:2px,color:#fff
-    style D fill:#000000,stroke:#333,stroke-width:2px,color:#fff
-    style E fill:#FF69B4,stroke:#e05297,stroke-width:2px,color:#fff
-    style F fill:#4a5568,stroke:#2d3748,stroke-width:2px,color:#fff
+graph TB
+    subgraph Client["🌐 Client Layer"]
+        Browser["Browser / Mobile"]
+    end
+
+    subgraph Frontend["⚛️ Frontend — Vercel"]
+        Next["Next.js 15\nApp Router + TypeScript"]
+        Tailwind["Tailwind CSS UI"]
+    end
+
+    subgraph Auth["🔐 Authentication"]
+        GoogleOAuth["Google OAuth 2.0"]
+        SupabaseAuth["Supabase Auth\n(Session Management)"]
+    end
+
+    subgraph Backend["🐍 Backend — Render"]
+        Flask["Flask REST API\n(Python)"]
+        Routes["API Routes\n/tasks /users /notifications"]
+    end
+
+    subgraph Database["🗄️ Database — Supabase"]
+        Postgres["PostgreSQL"]
+        Tables["users | tasks"]
+        RLS["Row Level Security"]
+    end
+
+    subgraph Email["📧 Email Service"]
+        Resend["Resend Email API"]
+        Templates["HTML Email Templates"]
+    end
+
+    Browser --> Next
+    Next --> GoogleOAuth
+    GoogleOAuth --> SupabaseAuth
+    SupabaseAuth --> Postgres
+    Next --> Flask
+    Flask --> Routes
+    Routes --> Postgres
+    Routes --> Resend
+    Resend --> Templates
+    Postgres --> Tables
+    Tables --> RLS
 ```
-### Architectural Flow:
-1.  **Authentication:** The frontend initializes Google OAuth via Supabase client libraries.
-2.  **Database Actions:** Standard task mutations (creation, updates, deletes) are performed directly through Supabase client queries or backend API wrappers.
-3.  **Flask Microservice:** When specific mutations require complex side-effects (such as sending transactional emails), the frontend hits custom endpoints on the Flask backend.
-4.  **Resend Email Service:** The Flask server processes templates and makes calls to the Resend API to deliver responsive notification emails.
+
+### Request Flow
+
+```mermaid
+sequenceDiagram
+    participant U as 👤 User
+    participant F as ⚛️ Next.js Frontend
+    participant S as 🔐 Supabase Auth
+    participant B as 🐍 Flask Backend
+    participant D as 🗄️ PostgreSQL
+    participant E as 📧 Resend API
+
+    U->>F: Login with Google
+    F->>S: OAuth Request
+    S-->>F: Session Token + User Data
+    F->>D: Store User (if new)
+
+    U->>F: Create & Assign Task
+    F->>B: POST /api/tasks (with auth token)
+    B->>D: Insert task record
+    D-->>B: Task created
+    B->>E: Send assignment email
+    E-->>U: 📬 "You've been assigned a task"
+    B-->>F: Success Response
+    F-->>U: Dashboard updated
+
+    U->>F: Mark Task Complete
+    F->>B: PATCH /api/tasks/:id/complete
+    B->>D: Update status = 'completed'
+    B->>E: Send completion email to assignor
+    E-->>U: 📬 "Task completed!"
+    B-->>F: Updated task data
+```
+
 ---
-## 💻 Tech Stack
-|
- Component 
-|
- Technology 
-|
- Purpose 
-|
-|
-:---
-|
-:---
-|
-:---
-|
-|
-**
-Frontend Framework
-**
-|
- Next.js 15 (App Router) 
-|
- Server-side rendering, routing, layouts, and React Server Components. 
-|
-|
-**
-Language
-**
-|
- TypeScript 
-|
- Type safety, enhanced IDE autocompletion, and robust codebase maintainability. 
-|
-|
-**
-Styling
-**
-|
- Tailwind CSS 
-|
- Utility-first styling for quick, beautiful, and fully responsive layout creation. 
-|
-|
-**
-Database & Auth
-**
-|
- Supabase (PostgreSQL) 
-|
- User credentials management, secure session handling, and relational data storage. 
-|
-|
-**
-Backend API
-**
-|
- Flask (Python 3.11) 
-|
- Lightweight API runner processing webhooks, mailer queues, and business logic. 
-|
-|
-**
-Email Service
-**
-|
- Resend API 
-|
- Transactional mail delivery platform with high deliverability. 
-|
-|
-**
-Frontend Hosting
-**
-|
- Vercel 
-|
- Seamless edge deployment with automatic preview deployments. 
-|
-|
-**
-Backend Hosting
-**
-|
- Render 
-|
- Production-grade hosting for Python Flask web services. 
-|
+
+## 🛠️ Tech Stack
+
+### Frontend
+
+| Technology | Version | Purpose |
+|---|---|---|
+| [Next.js](https://nextjs.org/) | 15 | React framework with App Router |
+| [TypeScript](https://www.typescriptlang.org/) | 5.x | Type safety & developer experience |
+| [Tailwind CSS](https://tailwindcss.com/) | 3.x | Utility-first styling |
+| [Supabase JS](https://supabase.com/docs/reference/javascript) | Latest | Auth client & database queries |
+
+### Backend
+
+| Technology | Version | Purpose |
+|---|---|---|
+| [Flask](https://flask.palletsprojects.com/) | 3.x | REST API server |
+| [Python](https://www.python.org/) | 3.11+ | Backend runtime |
+| [Supabase Python](https://github.com/supabase-community/supabase-py) | Latest | Database interaction |
+| [Resend](https://resend.com/) | Latest | Transactional email delivery |
+
+### Infrastructure
+
+| Service | Purpose |
+|---|---|
+| [Supabase](https://supabase.com/) | PostgreSQL database + Authentication |
+| [Vercel](https://vercel.com/) | Frontend deployment & CDN |
+| [Render](https://render.com/) | Flask backend deployment |
+
 ---
+
 ## 🗄️ Database Schema
-The relational database layer runs on PostgreSQL inside Supabase. The schema consists of two core tables linked via foreign key relationships:
+
+### Entity Relationship Diagram
+
 ```mermaid
 erDiagram
     USERS {
-        uuid id PK "Matches Supabase Auth UID"
-        varchar name "Full Name"
-        varchar email UK "Unique Email Address"
+        uuid id PK
+        text name
+        text email
     }
+
     TASKS {
-        bigint id PK "Auto-incrementing Identifier"
-        varchar title "Task Header"
-        text description "Detailed Task Markdown"
-        varchar status "Pending | In_Progress | Completed"
-        uuid assigned_to FK "References USERS(id)"
-        uuid assigned_by FK "References USERS(id)"
-        timestamp created_at "Auto-generated creation timestamp"
+        uuid id PK
+        text title
+        text description
+        text status
+        uuid assigned_to FK
+        uuid assigned_by FK
+        timestamp created_at
     }
-    USERS ||--o{ TASKS : "receives assignments"
-    USERS ||--o{ TASKS : "creates assignments"
+
+    USERS ||--o{ TASKS : "assigned_to"
+    USERS ||--o{ TASKS : "assigned_by"
 ```
+
 ### Table Definitions
-#### 1. `users`
-Tracks authenticated application users synced from Supabase auth schemas.
-*   `id`: `UUID` (Primary Key, matches `auth.users.id`)
-*   `name`: `VARCHAR(255)` (User's full name)
-*   `email`: `VARCHAR(255)` (Unique, user's email address)
-#### 2. `tasks`
-Tracks task parameters, states, and relations.
-*   `id`: `BIGINT` (Primary Key, Auto-Increment)
-*   `title`: `VARCHAR(255)` (Not Null)
-*   `description`: `TEXT` (Nullable)
-*   `status`: `VARCHAR(50)` (Default: `'Pending'`. Constraints: `Pending`, `In Progress`, `Completed`)
-*   `assigned_to`: `UUID` (Foreign Key referencing `users.id`, Nullable)
-*   `assigned_by`: `UUID` (Foreign Key referencing `users.id`, Not Null)
-*   `created_at`: `TIMESTAMP WITH TIME ZONE` (Default: `NOW()`)
----
-## 📁 Folder Structure
-The project is structured as a decoupled monorepo, separating frontend client concerns from backend business API endpoints.
+
 <details>
-<summary>📂 View Project Directory Tree</summary>
-```text
-hairdrama-task-manager/
-├── backend/                  # Flask Python Backend
-│   ├── app/
-│   │   ├── __init__.py       # App initialization
-│   │   ├── routes.py         # API Route definitions
-│   │   ├── templates.py      # Resend HTML email templates
-│   │   └── config.py         # Config configuration
-│   ├── .env.example          # Local backend template env file
-│   ├── requirements.txt      # Python dependencies
-│   ├── run.py                # WSGI Entry point
-│   └── README.md             # Backend specific docs
-│
-├── frontend/                 # Next.js TypeScript Frontend
-│   ├── src/
-│   │   ├── app/              # App router layouts and page routes
-│   │   │   ├── dashboard/    # User Workspace dashboard
-│   │   │   ├── login/        # Authentication landing page
-│   │   │   ├── layout.tsx
-│   │   │   └── page.tsx
-│   │   ├── components/       # Reusable UI components (Modals, TaskCards)
-│   │   │   ├── Navbar.tsx
-│   │   │   ├── TaskBoard.tsx
-│   │   │   └── TaskModal.tsx
-│   │   ├── lib/              # Supabase Client & Helper tools
-│   │   │   └── supabase.ts
-│   │   └── types/            # TypeScript type definitions
-│   │       └── index.ts
-│   ├── public/               # Static assets
-│   ├── .env.example          # Local frontend template env file
-│   ├── next.config.ts        # Next.js configurations
-│   ├── package.json          # Node dependencies
-│   └── tsconfig.json         # TypeScript compiler options
-│
-└── README.md                 # Project root README (This file)
+<summary>📋 <strong>users</strong> table</summary>
+
+```sql
+create table users (
+  id    uuid primary key default gen_random_uuid(),
+  name  text not null,
+  email text unique not null
+);
 ```
+
 </details>
+
+<details>
+<summary>📋 <strong>tasks</strong> table</summary>
+
+```sql
+create type task_status as enum ('pending', 'in_progress', 'completed');
+
+create table tasks (
+  id          uuid primary key default gen_random_uuid(),
+  title       text not null,
+  description text,
+  status      task_status default 'pending',
+  assigned_to uuid references users(id) on delete set null,
+  assigned_by uuid references users(id) on delete set null,
+  created_at  timestamp with time zone default now()
+);
+```
+
+</details>
+
 ---
-## 🛠️ Installation & Local Setup
-Prerequisites:
-*   [Node.js](https://nodejs.org/) (v18.x or later)
-*   [Python](https://www.python.org/) (v3.10 or later)
-*   [Supabase Account](https://supabase.com/) (Free tier works perfectly)
-*   [Resend Account](https://resend.com/)
+
+## 📁 Folder Structure
+
+```
+hairdrama-task-manager/
+│
+├── 📂 frontend/                      # Next.js 15 App
+│   ├── 📂 app/
+│   │   ├── 📂 (auth)/
+│   │   │   └── login/page.tsx        # Google OAuth login page
+│   │   ├── 📂 dashboard/
+│   │   │   ├── page.tsx              # Main dashboard
+│   │   │   └── layout.tsx            # Dashboard layout
+│   │   ├── layout.tsx                # Root layout
+│   │   └── page.tsx                  # Landing / redirect
+│   ├── 📂 components/
+│   │   ├── TaskCard.tsx              # Individual task card
+│   │   ├── TaskForm.tsx              # Create/edit task form
+│   │   ├── TaskList.tsx              # Task list container
+│   │   ├── UserAvatar.tsx            # User avatar component
+│   │   └── Navbar.tsx                # Navigation bar
+│   ├── 📂 lib/
+│   │   ├── supabase.ts               # Supabase client config
+│   │   └── api.ts                    # Flask API helper functions
+│   ├── 📂 types/
+│   │   └── index.ts                  # TypeScript interfaces
+│   ├── .env.local                    # Frontend env variables
+│   ├── next.config.ts                # Next.js config
+│   ├── tailwind.config.ts            # Tailwind config
+│   └── package.json
+│
+├── 📂 backend/                       # Flask Python API
+│   ├── 📂 routes/
+│   │   ├── tasks.py                  # Task CRUD routes
+│   │   ├── users.py                  # User routes
+│   │   └── notifications.py         # Email trigger routes
+│   ├── 📂 services/
+│   │   ├── email_service.py          # Resend email logic
+│   │   └── supabase_client.py        # Supabase DB connection
+│   ├── 📂 templates/
+│   │   ├── task_assigned.html        # Assignment email template
+│   │   └── task_completed.html       # Completion email template
+│   ├── app.py                        # Flask app entry point
+│   ├── requirements.txt              # Python dependencies
+│   └── .env                          # Backend env variables
+│
+├── README.md
+└── .gitignore
+```
+
 ---
-### Backend (Flask) Setup
-1.  Navigate to the backend directory:
-    ```bash
-    cd backend
-    ```
-2.  Create a virtual environment and activate it:
-    ```bash
-    # Windows
-    python -m venv venv
-    .\venv\Scripts\activate
-    # macOS/Linux
-    python3 -m venv venv
-    source venv/bin/activate
-    ```
-3.  Install dependencies:
-    ```bash
-    pip install -r requirements.txt
-    ```
-4.  Configure the environment:
-    ```bash
-    cp .env.example .env
-    ```
-    *Open `.env` and fill in your Supabase URL, Service Key, and Resend API Key (see [Environment Variables](#-environment-variables)).*
-5.  Run the Flask backend server:
-    ```bash
-    python run.py
-    ```
-    The server will start on `http://127.0.0.1:5000`.
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+Make sure you have the following installed:
+
+- **Node.js** `>= 18.x`
+- **Python** `>= 3.11`
+- **npm** or **yarn**
+- **pip**
+- A **Supabase** project ([create one free](https://supabase.com/))
+- A **Resend** account ([create one free](https://resend.com/))
+
 ---
-### Frontend (Next.js) Setup
-1.  Navigate to the frontend directory:
-    ```bash
-    cd ../frontend
-    ```
-2.  Install dependencies:
-    ```bash
-    npm install
-    ```
-3.  Configure the environment:
-    ```bash
-    cp .env.example .env.local
-    ```
-    *Open `.env.local` and add your public Supabase credentials and backend base URL.*
-4.  Run the Next.js development server:
-    ```bash
-    npm run dev
-    ```
-    The application will run locally on `http://localhost:3000`.
----
-## 🔑 Environment Variables
-To keep your credentials secure, configure the following environment variables.
-### Backend Configurations (`backend/.env`)
+
+## 🔐 Environment Variables
+
+### Frontend (`frontend/.env.local`)
+
 ```env
-FLASK_APP=run.py
-FLASK_ENV=development
-SUPABASE_URL=https://your-project-id.supabase.co
-SUPABASE_SERVICE_ROLE_KEY=your-supabase-service-role-jwt-key
+# Supabase
+NEXT_PUBLIC_SUPABASE_URL=https://your-project.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your-supabase-anon-key
+
+# Flask Backend
+NEXT_PUBLIC_API_URL=http://localhost:5000
+```
+
+### Backend (`backend/.env`)
+
+```env
+# Supabase
+SUPABASE_URL=https://your-project.supabase.co
+SUPABASE_SERVICE_ROLE_KEY=your-service-role-key
+
+# Resend Email API
 RESEND_API_KEY=re_your_resend_api_key
-SENDER_EMAIL=onboarding@resend.dev # Or your verified domain email
+FROM_EMAIL=noreply@yourdomain.com
+
+# Flask Config
+FLASK_ENV=development
+SECRET_KEY=your-secret-key-here
 ```
-### Frontend Configurations (`frontend/.env.local`)
-```env
-NEXT_PUBLIC_SUPABASE_URL=https://your-project-id.supabase.co
-NEXT_PUBLIC_SUPABASE_ANON_KEY=your-supabase-anon-public-key
-NEXT_PUBLIC_BACKEND_URL=http://127.0.0.1:5000
+
+> ⚠️ **Never commit `.env` files.** They are included in `.gitignore` by default.
+
+---
+
+## 🐍 Backend Setup (Flask)
+
+```bash
+# 1. Navigate to backend directory
+cd backend
+
+# 2. Create and activate a virtual environment
+python -m venv venv
+source venv/bin/activate       # On Windows: venv\Scripts\activate
+
+# 3. Install dependencies
+pip install -r requirements.txt
+
+# 4. Add your environment variables
+cp .env.example .env
+# Fill in your values in .env
+
+# 5. Run the Flask development server
+python app.py
+# Server starts at http://localhost:5000
 ```
-> [!WARNING]
-> Never commit `.env` or `.env.local` files to Git. Ensure they are listed in your `.gitignore` to protect sensitive cloud credentials.
+
+**`requirements.txt`**
+
+```txt
+flask==3.0.0
+flask-cors==4.0.0
+supabase==2.3.0
+resend==0.6.0
+python-dotenv==1.0.0
+gunicorn==21.2.0
+```
+
 ---
-## 🔌 API Endpoints
-The Flask backend exposes the following RESTful endpoints to coordinate workflow events:
-|
- Method 
-|
- Endpoint 
-|
- Description 
-|
- Auth Requirement 
-|
- Request Body (JSON) 
-|
- Response (JSON) 
-|
-|
-:---
-|
-:---
-|
-:---
-|
-:---
-|
-:---
-|
-:---
-|
-|
-**
-GET
-**
-|
-`/api/health`
-|
- Service health status check 
-|
- None 
-|
- None 
-|
-`{"status": "healthy"}`
-|
-|
-**
-POST
-**
-|
-`/api/notify/assign`
-|
- Sends email alerts when a task is assigned 
-|
- Supabase Session Check 
-|
-`{"task_title": "string", "assignee_email": "string", "assigner_name": "string", "task_description": "string"}`
-|
-`{"success": true, "message_id": "string"}`
-|
-|
-**
-POST
-**
-|
-`/api/notify/complete`
-|
- Sends email alerts when a task is finished 
-|
- Supabase Session Check 
-|
-`{"task_title": "string", "assigner_email": "string", "assignee_name": "string"}`
-|
-`{"success": true, "message_id": "string"}`
-|
-|
-**
-GET
-**
-|
-`/api/users/sync`
-|
- Manually triggers active auth user sync to SQL database 
-|
- Admin Bearer Token 
-|
- None 
-|
-`{"synced": 4, "errors": []}`
-|
+
+## ⚛️ Frontend Setup (Next.js)
+
+```bash
+# 1. Navigate to frontend directory
+cd frontend
+
+# 2. Install dependencies
+npm install
+
+# 3. Add your environment variables
+cp .env.local.example .env.local
+# Fill in your Supabase credentials
+
+# 4. Run the development server
+npm run dev
+# App starts at http://localhost:3000
+```
+
+### Supabase Setup
+
+1. Go to your [Supabase Dashboard](https://supabase.com/dashboard)
+2. Create a new project
+3. Run the SQL from the [Database Schema](#-database-schema) section in the **SQL Editor**
+4. Under **Authentication → Providers**, enable **Google** and add your OAuth credentials
+5. Add your site URL to **Authentication → URL Configuration**
+
 ---
-## 🚀 Deployment Guide
-### Backend Deployment (Render)
-1.  Create a new Web Service on [Render](https://render.com/).
-2.  Connect your GitHub repository.
-3.  Set the environment to **Python**.
-4.  Configure the Build Command:
-    ```bash
-    pip install -r backend/requirements.txt
-    ```
-5.  Configure the Start Command:
-    ```bash
-    gunicorn --chdir backend run:app
-    ```
-6.  Add the environment variables listed in the [Backend Env section](#backend-configurations-backendenv) to the Render dashboard.
-### Frontend Deployment (Vercel)
-1.  Import your repository into the [Vercel Dashboard](https://vercel.com).
-2.  Choose the **Next.js** framework preset.
-3.  Set the **Root Directory** to `frontend`.
-4.  Add all environment variables from the [Frontend Env section](#frontend-configurations-frontendenvlocal) into the Vercel dashboard.
-5.  Click **Deploy**. Vercel will handle building, optimization, and edge delivery.
+
+## 🚢 Deployment
+
+### Frontend → Vercel
+
+```bash
+# Install Vercel CLI
+npm install -g vercel
+
+# Deploy from frontend directory
+cd frontend
+vercel
+
+# Set environment variables in Vercel Dashboard:
+# NEXT_PUBLIC_SUPABASE_URL
+# NEXT_PUBLIC_SUPABASE_ANON_KEY
+# NEXT_PUBLIC_API_URL  (your Render backend URL)
+```
+
+Or connect your GitHub repo directly via [vercel.com/new](https://vercel.com/new) for automatic CI/CD deployments on every push.
+
+### Backend → Render
+
+1. Push your `backend/` folder to a GitHub repository
+2. Go to [render.com](https://render.com/) → **New Web Service**
+3. Connect your GitHub repo
+4. Configure the service:
+
+| Setting | Value |
+|---|---|
+| **Runtime** | Python 3 |
+| **Build Command** | `pip install -r requirements.txt` |
+| **Start Command** | `gunicorn app:app` |
+| **Environment** | Add all variables from `backend/.env` |
+
+5. Deploy! Render will auto-deploy on every push to `main`.
+
+---
+## 🌐 Live Deployment
+
+Frontend:
+https://hairdrama-task-manager-coral.vercel.app
+
+Backend:
+https://hairdrama-task-manager-vkcs.onrender.com
+
 ---
 ## 📸 Screenshots
-Here is a visual overview of the HairDrama Task Manager application interface:
-### 1. User Dashboard & Kanban Board
-![Dashboard Interface Placeholder](./assets/banner.png)
-*A sleek, customizable task dashboard illustrating team workloads, task priority lanes, and user profile badges.*
-### 2. Task Allocation Modal
-```
-┌────────────────────────────────────────────────────────┐
-│ Create New Task                                     [X]│
-├────────────────────────────────────────────────────────┤
-│ Title: [ Implement Resend Webhooks                  ]  │
-│ Description:                                           │
-│ [ Set up Flask route to listen to Resend's delivery  ]  │
-│ Assign To: [ Jane Doe (jane@example.com)           ▼]  │
-│ Priority:  ( ) Low     (●) Medium     ( ) High         │
-├────────────────────────────────────────────────────────┤
-│                                  [Cancel]  [Assign Task]│
-└────────────────────────────────────────────────────────┘
-```
-*Clean, simple creation window mapping real-time DB users to task assignments.*
+
+<details>
+<summary>🔐 Login Page</summary>
+
+> 📌 _Screenshot placeholder — replace with actual screenshot_
+> 
+> ![Login Page](screenshots/login.png)
+
+</details>
+
+<details>
+<summary>📊 Dashboard</summary>
+
+> 📌 _Screenshot placeholder — replace with actual screenshot_
+>
+> ![Dashboard](screenshots/dashboard.png)
+
+</details>
+
+<details>
+<summary>📝 Create Task Modal</summary>
+
+> 📌 _Screenshot placeholder — replace with actual screenshot_
+>
+> ![Create Task](screenshots/create-task.png)
+
+</details>
+
+<details>
+<summary>📧 Email Notification</summary>
+
+> 📌 _Screenshot placeholder — replace with actual screenshot_
+>
+> ![Email Notification](screenshots/email-notification.png)
+
+</details>
+
 ---
+
+## 📡 API Endpoints
+
+Base URL: `https://hairdrama-api.onrender.com` (production) | `http://localhost:5000` (local)
+
+### Users
+
+| Method | Endpoint | Description | Auth |
+|---|---|---|---|
+| `POST` | `/api/users` | Register or sync a user | ✅ Required |
+| `GET` | `/api/users` | Get all team members | ✅ Required |
+| `GET` | `/api/users/:id` | Get user by ID | ✅ Required |
+
+### Tasks
+
+| Method | Endpoint | Description | Auth |
+|---|---|---|---|
+| `GET` | `/api/tasks` | Get all tasks for current user | ✅ Required |
+| `POST` | `/api/tasks` | Create a new task | ✅ Required |
+| `GET` | `/api/tasks/:id` | Get a specific task | ✅ Required |
+| `PATCH` | `/api/tasks/:id` | Update task details | ✅ Required |
+| `PATCH` | `/api/tasks/:id/complete` | Mark task as completed | ✅ Required |
+| `DELETE` | `/api/tasks/:id` | Delete a task | ✅ Required |
+
+### Example Request & Response
+
+<details>
+<summary><code>POST /api/tasks</code> — Create Task</summary>
+
+**Request Body:**
+```json
+{
+  "title": "Design new landing page",
+  "description": "Create a modern landing page using Figma",
+  "assigned_to": "uuid-of-team-member",
+  "assigned_by": "uuid-of-current-user"
+}
+```
+
+**Response `201`:**
+```json
+{
+  "id": "task-uuid",
+  "title": "Design new landing page",
+  "description": "Create a modern landing page using Figma",
+  "status": "pending",
+  "assigned_to": "uuid-of-team-member",
+  "assigned_by": "uuid-of-current-user",
+  "created_at": "2024-01-15T10:30:00Z"
+}
+```
+
+</details>
+
+---
+
 ## 🔮 Future Enhancements
-*   **📋 Drag-and-Drop Board View:** Full Kanban integration using `@hello-pangea/dnd` for fluid task state updates.
-*   **💬 Activity Feeds & Comments:** In-app chat threads directly attached to specific tasks for rapid collaboration.
-*   **📎 File Attachments:** Direct file integration linked to tasks using Supabase Storage buckets.
-*   **🔔 Real-Time Web Sockets:** Live push alerts notifying users in-app when task changes occur without requiring a page refresh.
-*   **⏱️ Task Deadlines & Calendering:** Interactive calendar views highlighting due dates and overdue assignments.
+
+- [ ] 🔔 **Real-time notifications** using Supabase Realtime (WebSockets)
+- [ ] 📅 **Task due dates** with overdue status highlighting
+- [ ] 🏷️ **Task labels & priority** (Low / Medium / High / Critical)
+- [ ] 📊 **Analytics dashboard** — team productivity metrics & charts
+- [ ] 💬 **Task comments** — threaded discussions on individual tasks
+- [ ] 📎 **File attachments** — attach files to tasks via Supabase Storage
+- [ ] 🌙 **Dark mode** — system-aware theme switching
+- [ ] 📱 **Progressive Web App (PWA)** — offline support & home screen install
+- [ ] 🔗 **Slack / Discord integration** — task notifications in team channels
+- [ ] 🤖 **AI task suggestions** — smart assignment recommendations using Gemini API
+
 ---
+
 ## 🎓 Learning Outcomes
-Developing this full-stack application provides valuable real-world engineering takeaways:
-1.  **Distributed Monorepo Setup:** Implementing decoupled frontend and backend frameworks under a unified codebase structure.
-2.  **External Microservice Integration:** Handling secure cross-origin resource requests (CORS) between Next.js and Flask backend apps.
-3.  **Third-Party OAuth Workflows:** Managing session lifetimes, claims token parsing, and secure user states using Supabase JWT tokens.
-4.  **Transactional Messaging Architecture:** Implementing transactional email systems (via Resend) triggered by asynchronous task mutations.
+
+Building HairDrama Task Manager provided hands-on experience across the full stack:
+
+- **Frontend Architecture** — Implementing Next.js 15 App Router with Server and Client Components, TypeScript interfaces, and Tailwind CSS component design
+- **Authentication Flows** — Integrating Google OAuth with Supabase Auth, managing sessions, and protecting routes using middleware
+- **Backend API Design** — Designing RESTful APIs with Flask, structuring routes, and handling CORS for cross-origin requests
+- **Database Design** — Designing normalized PostgreSQL schemas, writing Supabase queries, and implementing Row Level Security (RLS) policies
+- **Third-party Integrations** — Consuming the Resend Email API with custom HTML templates for transactional emails
+- **Environment Management** — Separating frontend and backend configuration using `.env` files with proper secrets handling
+- **Deployment & DevOps** — Deploying a decoupled architecture to Vercel (frontend) and Render (backend) with CI/CD pipelines
+- **API Integration** — Connecting a Next.js frontend to a separate Flask backend with proper authentication header forwarding
+
 ---
+
 ## 🤝 Contributing
-Contributions are welcome! Please follow these steps to contribute:
-1.  Fork the repository.
-2.  Create your feature branch: `git checkout -b feature/AmazingFeature`
-3.  Commit your changes: `git commit -m 'Add some AmazingFeature'`
-4.  Push to the branch: `git push origin feature/AmazingFeature`
-5.  Open a Pull Request.
-Please make sure your code aligns with our project linting and formatting guidelines before submission.
+
+Contributions are always welcome! Here's how to get started:
+
+```bash
+# 1. Fork the repository
+# Click the Fork button at the top of this page
+
+# 2. Clone your fork
+git clone https://github.com/your-username/hairdrama-task-manager.git
+
+# 3. Create a feature branch
+git checkout -b feature/your-feature-name
+
+# 4. Make your changes and commit
+git add .
+git commit -m "feat: add your feature description"
+
+# 5. Push to your branch
+git push origin feature/your-feature-name
+
+# 6. Open a Pull Request
+# Go to GitHub and click "Compare & pull request"
+```
+
+### Commit Convention
+
+This project uses [Conventional Commits](https://www.conventionalcommits.org/):
+
+| Prefix | Usage |
+|---|---|
+| `feat:` | New feature |
+| `fix:` | Bug fix |
+| `docs:` | Documentation changes |
+| `style:` | Formatting, no logic change |
+| `refactor:` | Code restructure |
+| `chore:` | Dependency updates, tooling |
+
+---
+## 📈 Project Highlights
+
+✅ Google OAuth Authentication
+
+✅ Task Creation & Assignment
+
+✅ Team Collaboration Dashboard
+
+✅ Email Notifications using Resend
+
+✅ Flask REST API Backend
+
+✅ Supabase PostgreSQL Database
+
+✅ Next.js 15 + TypeScript Frontend
+
+✅ Production Deployment (Vercel + Render)
+
 ---
 ## 📄 License
-Distributed under the MIT License. See `LICENSE` for more information.
+
+This project is licensed under the **MIT License** — see the [LICENSE](LICENSE) file for details.
+
+```
+MIT License — free to use, modify, and distribute with attribution.
+```
+
 ---
-## ✍️ Author
-*   **Kartik Shukla** - *Full-Stack Software Engineer*
-    *   GitHub: [@kartikshukla](https://github.com/kartikshukla)
-    *   LinkedIn: [Kartik Shukla](https://linkedin.com/in/kartikshukla)
-    *   Portfolio: [kartikshukla.dev](https://kartikshukla.dev)
+
+## 👨‍💻 Author
+
+<div align="center">
+
+<img src="https://github.com/kartik.png" width="100" style="border-radius: 50%" alt="Kartik"/>
+
+### Kartik
+**B.Tech CSE | AIMT Lucknow (AKTU) | 2023–2027**
+
+*Full-Stack Developer · AI Enthusiast · Open to Internship Opportunities*
+
+
+[![GitHub](https://img.shields.io/badge/GitHub-Follow-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/kartikshukla2301-eng)
+[![Email](https://img.shields.io/badge/Email-Contact-EA4335?style=for-the-badge&logo=gmail&logoColor=white)](mailto:kartikshukla2301@gmail.com)
+[![Project Repository](https://img.shields.io/badge/Project_Repository-GitHub-181717?style=for-the-badge\&logo=github\&logoColor=white)](https://github.com/kartikshukla2301-eng/Hairdrama-Task-Manager)
+[![Live Application](https://img.shields.io/badge/Live_Application-Vercel-000000?style=for-the-badge\&logo=vercel\&logoColor=white)](https://hairdrama-task-manager-coral.vercel.app)
+[![Backend API](https://img.shields.io/badge/Backend_API-Render-46E3B7?style=for-the-badge\&logo=render\&logoColor=white)](https://hairdrama-task-manager-vkcs.onrender.com)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Kartik_Shukla-0A66C2?style=for-the-badge\&logo=linkedin\&logoColor=white)](https://www.linkedin.com/in/kartik-shukla-cse)
+</div>
+Project Repository:
+
+
+---
+
+<div align="center">
+
+**⭐ If this project helped you or you found it interesting, please give it a star!**
+
+<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=100&section=footer" width="100%"/>
+
+</div>
