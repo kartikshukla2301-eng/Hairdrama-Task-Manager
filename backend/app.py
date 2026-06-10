@@ -1,8 +1,7 @@
 from dotenv import load_dotenv
 from supabase import create_client
 import os
-import smtplib
-from email.mime.text import MIMEText
+import requests
 
 from flask import Flask, request, jsonify
 from flask_cors import CORS
@@ -20,22 +19,20 @@ supabase = create_client(
 tasks = []
 
 def send_email(to_email, subject, body):
-    msg = MIMEText(body)
 
-    msg["Subject"] = subject
-    msg["From"] = os.getenv("EMAIL_ADDRESS")
-    msg["To"] = to_email
-
-    server = smtplib.SMTP("smtp.gmail.com", 587)
-    server.starttls()
-
-    server.login(
-        os.getenv("EMAIL_ADDRESS"),
-        os.getenv("EMAIL_PASSWORD")
+    requests.post(
+        "https://api.resend.com/emails",
+        headers={
+            "Authorization": f"Bearer {os.getenv('RESEND_API_KEY')}",
+            "Content-Type": "application/json"
+        },
+        json={
+            "from": "onboarding@resend.dev",
+            "to": [to_email],
+            "subject": subject,
+            "html": body
+        }
     )
-
-    server.send_message(msg)
-    server.quit()
 
 
 @app.route("/")
@@ -89,10 +86,14 @@ def get_tasks():
 
 @app.route("/debug-email")
 def debug_email():
-    return {
-        "email": os.getenv("EMAIL_ADDRESS"),
-        "password_exists": bool(os.getenv("EMAIL_PASSWORD"))
-    }
+
+    send_email(
+        os.getenv("EMAIL_ADDRESS"),
+        "Debug Test",
+        "Testing Resend"
+    )
+
+    return {"message": "Sent"}
 @app.route("/tasks", methods=["POST"])
 def create_task():
 
