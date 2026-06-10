@@ -22,22 +22,24 @@ tasks = []
 
 def send_email(to_email, subject, body):
 
-  response = requests.post(
-    "https://api.resend.com/emails",
-    headers={
-        "Authorization": f"Bearer {os.getenv('RESEND_API_KEY')}",
-        "Content-Type": "application/json"
-    },
-    json={
-        "from": "onboarding@resend.dev",
-        "to": [to_email],
-        "subject": subject,
-        "html": body
-    }
-)
+    print("SEND EMAIL CALLED")
 
-print("STATUS:", response.status_code)
-print("BODY:", response.text)
+    response = requests.post(
+        "https://api.resend.com/emails",
+        headers={
+            "Authorization": f"Bearer {os.getenv('RESEND_API_KEY')}",
+            "Content-Type": "application/json"
+        },
+        json={
+            "from": "onboarding@resend.dev",
+            "to": [to_email],
+            "subject": subject,
+            "html": body
+        }
+    )
+
+    print("STATUS:", response.status_code)
+    print("BODY:", response.text)
 
 @app.route("/")
 def home():
