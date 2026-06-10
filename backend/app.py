@@ -87,7 +87,23 @@ def task_completed_email():
 def get_tasks():
     return jsonify(tasks)
 
+@app.route("/debug-email")
+def debug_email():
+    try:
+        server = smtplib.SMTP("smtp.gmail.com", 587, timeout=30)
+        server.starttls()
 
+        server.login(
+            os.getenv("EMAIL_ADDRESS"),
+            os.getenv("EMAIL_PASSWORD")
+        )
+
+        server.quit()
+
+        return {"message": "Login Success"}
+
+    except Exception as e:
+        return {"error": str(e)}
 @app.route("/tasks", methods=["POST"])
 def create_task():
 
