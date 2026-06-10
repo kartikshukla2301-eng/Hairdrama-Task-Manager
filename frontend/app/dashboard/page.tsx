@@ -85,11 +85,12 @@ console.log("CURRENT USER ID:", user?.id);
         assigned_by: user?.id,
       },
     ]);
+    
  const assignedUser = users.find(
   (u) => u.id === assignedTo
 );
-
-await fetch(
+console.log("ASSIGNED USER:", assignedUser);
+const response = await fetch(
   "https://hairdrama-task-manager-vkcs.onrender.com/send-task-email",
   {
     method: "POST",
@@ -102,7 +103,9 @@ await fetch(
     }),
   }
 );
-    if (!error) {
+
+console.log("EMAIL STATUS:", response.status);
+console.log("EMAIL RESPONSE:", await response.text());  if (!error) {
       alert("Task Created");
       setTitle("");
       setDescription("");

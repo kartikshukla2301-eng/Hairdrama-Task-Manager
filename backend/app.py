@@ -1,3 +1,5 @@
+from urllib import response
+
 from dotenv import load_dotenv
 from supabase import create_client
 import os
@@ -20,20 +22,22 @@ tasks = []
 
 def send_email(to_email, subject, body):
 
-    requests.post(
-        "https://api.resend.com/emails",
-        headers={
-            "Authorization": f"Bearer {os.getenv('RESEND_API_KEY')}",
-            "Content-Type": "application/json"
-        },
-        json={
-            "from": "onboarding@resend.dev",
-            "to": [to_email],
-            "subject": subject,
-            "html": body
-        }
-    )
+  response = requests.post(
+    "https://api.resend.com/emails",
+    headers={
+        "Authorization": f"Bearer {os.getenv('RESEND_API_KEY')}",
+        "Content-Type": "application/json"
+    },
+    json={
+        "from": "onboarding@resend.dev",
+        "to": [to_email],
+        "subject": subject,
+        "html": body
+    }
+)
 
+print("STATUS:", response.status_code)
+print("BODY:", response.text)
 
 @app.route("/")
 def home():
