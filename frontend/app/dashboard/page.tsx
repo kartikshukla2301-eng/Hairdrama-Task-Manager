@@ -74,7 +74,7 @@ useEffect(() => {
 
   getUser();
 }, []);  
-
+console.log("CURRENT USER ID:", user?.id);
   const createTask = async () => {
     const { error } = await supabase.from("tasks").insert([
       {
