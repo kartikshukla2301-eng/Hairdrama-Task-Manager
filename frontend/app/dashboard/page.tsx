@@ -309,7 +309,8 @@ Create a task to get started</p>
                 const assignedUser = users.find(
                 (u) => u.id === task.assigned_to
                 );  
-                await fetch("http://127.0.0.1:5000/task-completed-email", {
+                await fetch("http://127.0.0.1:5000/task-completed-email, https://hairdrama-task-manager-vkcs.onrender.com/send-task-email", {
+
                 method: "POST",
                 headers: {
                "Content-Type": "application/json",
